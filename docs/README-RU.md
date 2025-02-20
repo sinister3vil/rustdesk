@@ -24,20 +24,9 @@ RustDesk приветствует вклад каждого. Ознакомьт�
 
 [**СКАЧАТЬ ПРИЛОЖЕНИЕ**](https://github.com/rustdesk/rustdesk/releases)
 
+[**ночные сборки (актуальные)**](https://github.com/rustdesk/rustdesk/releases/tag/nightly)
+
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/en/packages/com.carriez.flutter_hbb)
-
-## Бесплатные общедоступные серверы
-
-Ниже приведены бесплатные публичные сервера, используемые по умолчанию. Имейте ввиду, они могут меняться со временем. Также стоит отметить, что скорость работы сети зависит от вашего местоположения и расстояния до серверов. Подключение происходит к ближайшему доступному.
-| Расположение | Поставщик | Технические характеристики |
-| --------- | ------------- | ------------------ |
-| Сеул | AWS lightsail | 1 vCPU / 0.5GB RAM |
-| Сингапур | Vultr | 1 vCPU / 1GB RAM |
-| Даллас | Vultr | 1 vCPU / 1GB RAM |
-| Германия | Hetzner | 2 vCPU / 4GB RAM |
-| Германия | Codext | 4 vCPU / 8GB RAM |
-| Финляндия (Хельсинки) | 0x101 Cyber Security | 4 vCPU / 8GB RAM |
-| США (Эшберн) | 0x101 Cyber Security | 4 vCPU / 8GB RAM |
 
 ## Зависимости
 
@@ -55,8 +44,8 @@ RustDesk приветствует вклад каждого. Ознакомьт�
 
 - Установите [vcpkg](https://github.com/microsoft/vcpkg), и правильно установите переменную `VCPKG_ROOT`
 
-  - Windows: vcpkg install libvpx:x64-windows-static libyuv:x64-windows-static opus:x64-windows-static
-  - Linux/MacOS: vcpkg install libvpx libyuv opus
+  - Windows: vcpkg install libvpx:x64-windows-static libyuv:x64-windows-static opus:x64-windows-static aom:x64-windows-static
+  - Linux/MacOS: vcpkg install libvpx libyuv opus aom
 
 - Запустите `cargo run`
 
@@ -85,11 +74,11 @@ sudo pacman -Syu --needed unzip git cmake gcc curl wget yasm nasm zip make pkg-c
 ```sh
 git clone https://github.com/microsoft/vcpkg
 cd vcpkg
-git checkout 2021.12.01
+git checkout 2023.04.15
 cd ..
 vcpkg/bootstrap-vcpkg.sh
 export VCPKG_ROOT=$HOME/vcpkg
-vcpkg/vcpkg install libvpx libyuv opus
+vcpkg/vcpkg install libvpx libyuv opus aom
 ```
 
 ### Исправление libvpx (для Fedora)
@@ -117,10 +106,6 @@ wget https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/lib
 mv libsciter-gtk.so target/debug
 VCPKG_ROOT=$HOME/vcpkg cargo run
 ```
-
-### Смените Wayland на X11 (Xorg)
-
-RustDesk не поддерживает Wayland. Смотрите [этот документ](https://docs.fedoraproject.org/en-US/quick-docs/configuring-xorg-as-default-gnome-session/) для настройки Xorg в качестве сеанса GNOME по умолчанию.
 
 ## Как собрать с помощью Docker
 
@@ -162,6 +147,10 @@ target/release/rustdesk
 - **[src/client.rs](https://github.com/rustdesk/rustdesk/tree/master/src/client.rs)**: одноранговое соединение
 - **[src/rendezvous_mediator.rs](https://github.com/rustdesk/rustdesk/tree/master/src/rendezvous_mediator.rs)**: свяжитесь с [rustdesk-server](https://github.com/rustdesk/rustdesk-server), дождитесь удаленного прямого (обход TCP NAT) или ретранслируемого соединения
 - **[src/platform](https://github.com/rustdesk/rustdesk/tree/master/src/platform)**: специфичный для платформы код
+
+> [!Осторожно]
+> **Отказ от ответственности за неправомерное использование:** <br>
+> Разработчики RustDesk не одобряют и не поддерживают какое-либо неэтичное или незаконное использование данного программного обеспечения. Неправомерное использование, такое как несанкционированный доступ, контроль или вторжение в частную жизнь, строго противоречит нашим правилам. Авторы не несут ответственности за любое неправомерное использование приложения.
 
 ## Скриншоты
 
